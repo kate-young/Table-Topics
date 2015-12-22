@@ -4,7 +4,7 @@ FactoryGirl.define do
       description "This is a table topic question set"
 
       factory :question_set_with_questions do
-        ignore do
+        transient do
            questions_count 5
         end
 
@@ -16,7 +16,7 @@ FactoryGirl.define do
    end
 
    factory :question do 
-      value "What is your favorite color"
+      value "What is your favorite color?"
       used false
       association :question_set, factory: :question_set, name: "Topic" 
    end
