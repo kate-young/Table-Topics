@@ -17,4 +17,6 @@ RSpec.describe Question, type: :model do
 
   it { should validate_presence_of(:value)}
 
+  it { should validate_uniqueness_of(:value).scoped_to(:question_set_id) }
+
 end
