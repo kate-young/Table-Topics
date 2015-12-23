@@ -42,8 +42,8 @@ class QuestionSetsController < ApplicationController
   def update
     respond_to do |format|
       if @question_set.update(question_set_params)
-        format.html { redirect_to @question_set, notice: 'Question set was successfully updated.' }
-        format.json { render :show, status: :ok, location: @question_set }
+        format.html { redirect_to question_sets_path, notice: 'Question set was successfully updated.' }
+        format.json { render :show, status: :ok, location: question_sets_path }
       else
         format.html { render :edit }
         format.json { render json: @question_set.errors, status: :unprocessable_entity }
