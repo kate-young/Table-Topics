@@ -1,4 +1,5 @@
 require 'rails_helper'
+
 describe "Creating a new question" do
   def create_question(options = {})
     options[:value] ||= "What is your favorite color?" 
@@ -18,14 +19,18 @@ describe "Creating a new question" do
   let!(:question_set) { FactoryGirl.create(:question_set) }
 
   it "redirects to show question set page on success with new question" do
+    expect(question_set.questions.count).to eq(0)
+
     question = create_question question_set: question_set
 
+    expect(question_set.questions.count).to eq(1)
     expect(page).to have_content question 
   end
 
   it "displays an error when the question value is blank" do
     create_question value: "", question_set: question_set
 
+    expect(question_set.questions.count).to eq(0)
     expect(page).to have_content "can't be blank"
   end
 end

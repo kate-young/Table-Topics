@@ -19,6 +19,6 @@
      <%= f.text_area :description %>
   </div>
   <div class="actions">
-    <%= f.submit "Create Question Set" %>
+    <%= f.submit action_name == "new" ? "Create Question Set" : "Edit Question Set" %>
   </div>
 <% end %>

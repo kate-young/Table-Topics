@@ -4,7 +4,10 @@
 <% if @question_set.questions.length > 0 %>
     <ul>
     <% @question_set.questions.each do |question| %>
-        <li id="<%= dom_id(question) %>"><%= question[:value] %></li>
+        <li id="<%= dom_id(question) %>">
+          <%= question[:value] %>
+          <%= link_to 'Edit', edit_question_set_question_path(@question_set, question) %>
+        </li>
     <% end %>
     </ul>
 <% end %>
