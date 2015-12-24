@@ -37,6 +37,16 @@ class QuestionsController < ApplicationController
       end
     end
   end
+  def destroy
+    @question= Question.find(params[:question_set_id])
+    @question.destroy
+    respond_to do |format|
+      format.html { redirect_to question_sets_url, notice: 'Question was successfully destroyed.' }
+      format.json { head :no_content }
+    end
+  end
+
+
 
   private
     def question_params

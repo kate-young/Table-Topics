@@ -7,6 +7,7 @@
         <li id="<%= dom_id(question) %>">
           <%= question[:value] %>
           <%= link_to 'Edit', edit_question_set_question_path(@question_set, question) %>
+          <%= link_to 'Destroy', question_set_question_path(@question_set,question), method: :delete %>
         </li>
     <% end %>
     </ul>
