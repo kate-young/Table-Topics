@@ -1,12 +1,15 @@
 class QuestionsController < ApplicationController
+  before_action :set_question, only: [:show, :edit, :update, :destroy]
+
   def new
     question_set = QuestionSet.find(params[:question_set_id])
-
     @question = question_set.questions.build
   end
 
   def edit
-    @question = Question.find(params[:id])
+  end
+
+  def show
   end
 
   def create
@@ -26,8 +29,6 @@ class QuestionsController < ApplicationController
 
   def update
     respond_to do |format|
-      question_set = QuestionSet.find(params[:question_set_id])
-      @question = question_set.questions.find(params[:id])
       if @question.update(question_params)
         format.html { redirect_to @question.question_set, notice: 'Question set was successfully updated.' }
         format.json { render :show, status: :ok, location: @question.question_set }
@@ -38,7 +39,6 @@ class QuestionsController < ApplicationController
     end
   end
   def destroy
-    @question= Question.find(params[:question_set_id])
     @question.destroy
     respond_to do |format|
       format.html { redirect_to question_sets_url, notice: 'Question was successfully destroyed.' }
@@ -46,9 +46,12 @@ class QuestionsController < ApplicationController
     end
   end
 
-
-
   private
+    def set_question
+      question_set = QuestionSet.find(params[:question_set_id])
+      @question = question_set.questions.find(params[:id])
+    end
+
     def question_params
       params.require(:question).permit(:value)
     end

@@ -6,6 +6,7 @@
     <% @question_set.questions.each do |question| %>
         <li id="<%= dom_id(question) %>">
           <%= question[:value] %>
+	  <%= question[:used] ? "(used)" : "(not used)" %>
           <%= link_to 'Edit', edit_question_set_question_path(@question_set, question) %>
           <%= link_to 'Destroy', question_set_question_path(@question_set,question), method: :delete %>
         </li>
