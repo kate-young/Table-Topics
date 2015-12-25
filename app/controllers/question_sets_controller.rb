@@ -31,12 +31,15 @@ class QuestionSetsController < ApplicationController
 
   def random_question
     random = @question_set.questions.unused.sample
-    random.use
-    render plain: random.value 
+    if random 
+      random.use
+      render plain: random.value 
+    end
   end
 
   def reset_questions
     @question_set.reset
+    render partial: "used_questions"
   end
 
   # POST /question_sets
