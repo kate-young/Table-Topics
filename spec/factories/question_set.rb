@@ -8,15 +8,19 @@ FactoryGirl.define do
            questions_count 5
         end
 
-        after(:create) do |question_sit, evaluator|
-           FactoryGirl.create_list(:question, evaluator.questions_count, question: question)
+        after(:create) do |question_set, evaluator|
+           FactoryGirl.create_list(:question, evaluator.questions_count, question_set: question_set)
            question_set.reload
         end
       end
    end
 
+   sequence :value do |n|
+      "Question #{n}?"
+   end
+
    factory :question do 
-      value "What is your favorite color?"
+      value
       used false
       association :question_set, factory: :question_set, name: "Topic" 
    end

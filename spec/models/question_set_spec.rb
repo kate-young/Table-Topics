@@ -17,4 +17,14 @@ RSpec.describe QuestionSet, type: :model do
       should validate_uniqueness_of(:name) 
    end
 
+   it "reset method sets used to false for all question sets" do
+      question_set = FactoryGirl.create(:question_set_with_questions)
+      question_set.questions.each do |question|
+         question.update(used: true)
+      end
+      question_set.reset
+      question_set.questions.each do |question|
+	 expect(question.used).to eq(false)
+      end
+   end
 end
