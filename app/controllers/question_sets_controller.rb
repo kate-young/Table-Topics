@@ -1,10 +1,10 @@
 class QuestionSetsController < ApplicationController
-  before_action :set_question_set, only: [:show, :edit, :update, :destroy]
+  before_action :set_question_set, only: [:show, :edit, :update, :destroy, :chose]
+  before_action :get_all_question_sets, only: [:index, :table_topics]
 
   # GET /question_sets
   # GET /question_sets.json
   def index
-    @question_sets = QuestionSet.all
   end
 
   # GET /question_sets/1
@@ -19,6 +19,12 @@ class QuestionSetsController < ApplicationController
 
   # GET /question_sets/1/edit
   def edit
+  end
+
+  def table_topics 
+  end
+
+  def chose
   end
 
   # POST /question_sets
@@ -65,6 +71,10 @@ class QuestionSetsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_question_set
       @question_set = QuestionSet.find(params[:id])
+    end
+
+    def get_all_question_sets
+      @question_sets = QuestionSet.all
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

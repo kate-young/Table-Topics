@@ -1,0 +1,9 @@
+<h1><%= @question_set.name %></h1>
+
+<% if @question_set.questions.count > 0 %>
+  <ul>
+    <% @question_set.questions.each do |question| %>
+      <li><%= question.value %></li>
+    <% end %>
+  </ul>
+<% end %>
