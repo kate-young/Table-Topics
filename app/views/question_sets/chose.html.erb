@@ -8,6 +8,8 @@
   <%= link_to "Reset", reset_questions_path, id: "reset_questions" %>
 <% end %>
 <h1 id="random_question"></h1>
-<%= render partial: "unused_questions" %>
+<div id="used_questions">
+  <%= render partial: "used_questions" %>
+</div>
 <%= link_to "Back", table_topics_path %>
 <%= link_to "Edit Questions", question_set_path(@question_set.id) %>

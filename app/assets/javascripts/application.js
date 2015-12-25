@@ -21,12 +21,16 @@ $(document).ready(function() {
     $.get($("#random").attr("href"), function(data) {
       $("#random_question").html(data);	  
     }); 
+    $.get(window.location.href + "/used_questions", function(data) {
+      $("#used_questions").html(data);
+    });	    
   });
 
   $("#reset_questions").click(function(event) {
    event.preventDefault();
-   $.get($("#reset_questions").attr("href"), function(data) {
-   });
+   $.get($("#reset_questions").attr("href"), function() {});
+   $.get(window.location.href + "/used_questions", function(data) {
+     $("#used_questions").html(data);
+   });	    
   });
-
 });

@@ -1,5 +1,5 @@
 class QuestionSetsController < ApplicationController
-  before_action :set_question_set, only: [:show, :edit, :update, :destroy, :chose, :random_question, :reset_questions]
+  before_action :set_question_set, only: [:show, :edit, :update, :destroy, :chose, :random_question, :reset_questions, :used_questions]
   before_action :get_all_question_sets, only: [:index, :table_topics]
 
   # GET /question_sets
@@ -34,12 +34,19 @@ class QuestionSetsController < ApplicationController
     if random 
       random.use
       render plain: random.value 
+    else
+      head :ok, content_type: "text/html"
     end
+  end
+
+  def used_questions 
+    @used = @question_set.questions.used
+    render partial: "used_questions"
   end
 
   def reset_questions
     @question_set.reset
-    render partial: "used_questions"
+    head :ok, content_type: "text/html"
   end
 
   # POST /question_sets

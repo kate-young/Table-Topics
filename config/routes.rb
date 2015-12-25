@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   get "/table_topics/:id", to: "question_sets#chose", as: "chose"
   get "/table_topics/:id/random_question", to: "question_sets#random_question", as: "random"
   get "/table_topics/:id/reset_questions", to: "question_sets#reset_questions", as: "reset_questions"
+  get "/table_topics/:id/used_questions", to: "question_sets#used_questions", as: "used_questions"
   resources :question_sets do
      resources :questions
   end
