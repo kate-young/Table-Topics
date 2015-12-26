@@ -14,23 +14,33 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
 $(document).ready(function() {
 
-  $("#random").click(function(event) {
+  $("#chose_links").on("click", "#random", function(event) {
     event.preventDefault();
-    $.get($("#random").attr("href"), function(data) {
-      $("#random_question").html(data);	  
+    $.ajax({
+      url: $("#random").attr("href"), 
+      success: function(data) {
+        $("#random_question").html(data.random_question == null ? "No more questions" : data.random_question);	  
+	$("#used_questions").empty();
+	$(data.used_questions).each(function(index, question) {
+           $("#used_questions").append("<li>"+ question.value + "</li>");
+	});
+      }
     }); 
-    $.get(window.location.href + "/used_questions", function(data) {
-      $("#used_questions").html(data);
-    });	    
   });
 
-  $("#reset_questions").click(function(event) {
-   event.preventDefault();
-   $.get($("#reset_questions").attr("href"), function() {});
-   $.get(window.location.href + "/used_questions", function(data) {
-     $("#used_questions").html(data);
-   });	    
+  $("#chose_links").on("click", "#reset_questions", function(event) {
+    event.preventDefault();
+    $.ajax({
+       url: $("#reset_questions").attr("href"),
+       success: function() {
+	 $("#random_question").empty();
+	 $("#used_questions").empty();
+       }
+    });
   });
+
 });

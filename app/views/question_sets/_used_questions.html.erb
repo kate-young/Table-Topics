@@ -1,9 +1,0 @@
-<% if @used && @used.count > 0 %>
-<h4>Questions already answered:</h4>
-  <ul>
-    <% @used.each do |question| %>
-      <li><%= question.value %></li>
-    <% end %>
-  </ul>
-<% end %>
-
