@@ -16,6 +16,19 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
+function showQuestion(questionHash) {
+  $("#random_question").html(questionHash == null ? "No more questions" : questionHash.random_question);
+}
+
+function updateUsedQuestion(questionHash) {
+ var htmlList = '';
+ $(questionHash.used_questions).each(function(index, question) {
+     htmlList += "<li>" + question.value + "</li>\n";
+ });
+ console.log(htmlList);
+ $("#used_questions").html(htmlList);
+}
+
 $(document).ready(function() {
 
   $("#chose_links").on("click", "#random", function(event) {
@@ -23,12 +36,9 @@ $(document).ready(function() {
     $.ajax({
       url: $("#random").attr("href"), 
       success: function(data) {
-        $("#random_question").html(data.random_question == null ? "No more questions" : data.random_question);	  
-	$("#used_questions").empty();
-	$(data.used_questions).each(function(index, question) {
-           $("#used_questions").append("<li>"+ question.value + "</li>");
-	});
-      }
+         showQuestion(data); 
+         updateUsedQuestion(data);
+	   }
     }); 
   });
 
@@ -37,8 +47,8 @@ $(document).ready(function() {
     $.ajax({
        url: $("#reset_questions").attr("href"),
        success: function() {
-	 $("#random_question").empty();
-	 $("#used_questions").empty();
+	     $("#random_question").empty();
+	     $("#used_questions").empty();
        }
     });
   });
