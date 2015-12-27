@@ -2,17 +2,17 @@
 <h1><%= @question_set[:name] %></h1>
 <p><%= @question_set[:description] %></p>
 <% if @question_set.questions.length > 0 %>
-    <ul>
+    <ul class="list-group">
     <% @question_set.questions.each do |question| %>
-        <li id="<%= dom_id(question) %>">
+        <li id="<%= dom_id(question) %>", class="list-group-item">
           <%= question[:value] %>
 	  <%= question[:used] ? "(used)" : "(not used)" %>
-          <%= link_to 'Edit', edit_question_set_question_path(@question_set, question) %>
-          <%= link_to 'Destroy', question_set_question_path(@question_set,question), method: :delete %>
+          <%= link_to 'Edit', edit_question_set_question_path(@question_set, question), class: "btn btn-link btn-xs pull-right" %>
+          <%= link_to 'Destroy', question_set_question_path(@question_set,question), method: :delete, class: "btn btn-link btn-xs pull-right"%>
         </li>
     <% end %>
     </ul>
 <% end %>
-<%= link_to 'Add Question', new_question_set_question_path(@question_set) %>
-<%= link_to 'Edit', edit_question_set_path(@question_set) %> |
-<%= link_to 'Back', question_sets_path %>
+<%= link_to 'Add Question', new_question_set_question_path(@question_set), class: "btn btn-primary btn-block" %>
+<%= link_to 'Edit', edit_question_set_path(@question_set), class: "btn btn-default pull-right" %> 
+<%= link_to 'Back', question_sets_path, class: "btn btn-default pull-right" %>

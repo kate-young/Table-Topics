@@ -10,10 +10,10 @@
       </ul>
     </div>
   <% end %>
-  <div class="field">
-     <%= f.text_field :value %>
+  <div class="form-group">
+     <%= f.text_field :value, class: "form-control"%>
   </div>
   <div class="actions">
-    <%= f.submit action_name == "new" ? "Create Question" : "Edit Question" %>
+    <%= f.submit action_name == "new" ? "Create Question" : "Edit Question", class: "btn btn-default" %>
   </div>
 <% end %>

@@ -1,8 +1,8 @@
 <h4>Select a Question Set for Table Topics</h4>
 <% if @question_sets.count > 0 %>
-  <ul>
+  <div class="list-group">
     <% @question_sets.each do |question_set| %>
-      <li><%=link_to  question_set.name, chose_path(question_set.id) %></li>
+      <%=link_to  question_set.name, chose_path(question_set.id), class: "list-group-item" %>
     <% end %>
-  </ul>
+  </div>
 <% end %>

@@ -42,7 +42,7 @@ $(document).ready(function() {
     }); 
   });
 
-  $("#chose_links").on("click", "#reset_questions", function(event) {
+  $(".footer").on("click", "#reset_questions", function(event) {
     event.preventDefault();
     $.ajax({
        url: $("#reset_questions").attr("href"),
