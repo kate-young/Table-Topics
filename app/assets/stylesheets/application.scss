@@ -16,4 +16,47 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+$light-gray: #6D828A;
+$dark-gray: #303A3D;
+$medium-gray: #6D828A;
+$light-blue: #62AEC8;
+$medium-blue: #286090;
+$dark-blue: #1E353D;
+$white: #FFFFFF;
 
+h2, h3, h4 {
+  color: $medium-gray;
+}
+.btn-primary {
+  &:visited {
+    color: $white;
+  }
+  background-color: $medium-blue;
+  color: $white;
+  border: none;
+  &:hover, &:focus, &:active {
+    background-color: $light-blue;
+  }
+}
+.page-title {
+  padding-bottom: 10px;
+  margin: 10px 0px;
+}
+.headline {
+  padding: 20px;
+  color: $medium-blue;
+  border: 1px solid $light-blue;
+  border-radius: 5px;
+  margin: 10px 0px;
+}
+/*  HEADER  */
+.navbar-default {
+  border-bottom: 1px solid $dark-blue;
+  background-color: $medium-blue;
+  .navbar-brand {
+      color: $white;
+  }
+  .navbar-nav {
+      color: $medium-blue;
+  }
+}
