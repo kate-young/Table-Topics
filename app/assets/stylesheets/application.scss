@@ -27,16 +27,23 @@ $white: #FFFFFF;
 h2, h3, h4 {
   color: $medium-gray;
 }
+li {
+  color: $dark-gray;
+  margin-left: 20px;
+}
 .btn-primary {
-  &:visited {
-    color: $white;
-  }
   background-color: $medium-blue;
   color: $white;
   border: none;
-  &:hover, &:focus, &:active {
+  &:hover {
     background-color: $light-blue;
   }
+  &:visited {
+    color: $white;
+  }
+}
+.link-list li {
+  display: inline-block;
 }
 .page-title {
   padding-bottom: 10px;
@@ -53,8 +60,15 @@ h2, h3, h4 {
 .navbar-default {
   border-bottom: 1px solid $dark-blue;
   background-color: $medium-blue;
+  .navbar-toggle {
+      color: $white;
+      border-color: $white;
+  }
   .navbar-brand {
       color: $white;
+      &:hover {
+        color: $light-gray;
+      }
   }
   .navbar-nav {
       color: $medium-blue;

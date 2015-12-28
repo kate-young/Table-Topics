@@ -2,5 +2,7 @@
 
 <%= render 'form' %>
 
-<%= link_to 'Show', @question_set, class: "btn btn-link pull-right" %> 
-<%= link_to 'Back', question_sets_path, class: "btn btn-link pull-right" %>
+<ul class="link-list pull-right">
+    <li><%= link_to 'Show', @question_set, class: "btn btn-link pull-right" %></li>
+    <li><%= link_to 'Back', question_sets_path, class: "btn btn-link pull-right" %></li>
+</ul>
