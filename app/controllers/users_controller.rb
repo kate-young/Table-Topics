@@ -9,9 +9,6 @@ class UsersController < ApplicationController
   def edit
   end
 
-  def show
-  end
-
   # POST /users
   # POST /users.json
   def create
@@ -19,11 +16,12 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
-        format.json { render :show, status: :created, location: @user }
+        session[:user_id] = @user.id
+        format.html { redirect_to table_topics_path, success: "Thanks for signing up!" }
+        format.json { render action: "show", status: :created, location: @user }
       else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        format.html { render action: "new" }
+        format.json { render json: @user.errors, satus: :unprocessable_entity }
       end
     end
   end
@@ -33,7 +31,7 @@ class UsersController < ApplicationController
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
+        format.html { redirect_to table_topics_path , notice: 'User was successfully updated.' }
         format.json { render :show, status: :ok, location: @user }
       else
         format.html { render :edit }

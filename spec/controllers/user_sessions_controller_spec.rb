@@ -11,9 +11,9 @@ RSpec.describe UserSessionsController, type: :controller do
 
   describe "POST #create" do
     context "with correct credentials" do
-      let!(:user) {User.create(first_name: "Kate", last_name: "Young", email: "kate@young.com", password: "kate1234", password_confirmation: "kate1234")}
+      let!(:user) { User.create(first_name: "Kate", last_name: "Young", email: "kate@young.com", password: "kate1234", password_confirmation: "kate1234")}
 
-      it "redirects to the todo list path" do
+      it "redirects to the table topics path" do
         post :create, email: "kate@young.com", password: "kate1234"
         expect(response).to be_redirect
         expect(response).to redirect_to(table_topics_path)
@@ -43,13 +43,13 @@ RSpec.describe UserSessionsController, type: :controller do
     
     shared_examples_for "denied login" do
       it "renders the new template" do
-        post :create, email:  email, password: password 
+        post :create, email: email, password: password 
         expect(response).to render_template("new")
       end
 
       it "sets the flash error message" do
-        post :create, email:  email, password: password
-        expect(flash[:error]).to eq("There was a problem logging in. Please check your email and password")
+        post :create, email: email, password: password
+        expect(flash[:error]).to eq("There was a problem logging in. Please check your email and password.")
       end
     end
 

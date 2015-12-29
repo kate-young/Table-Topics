@@ -12,9 +12,13 @@ RSpec.describe UsersController, type: :controller do
       "password_confirmation" => "kate1234"
   } }
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { {
+    "first_name" => "",
+    "last_name" => "",
+    "email" => "",
+    "password" => "wrong1",
+    "password" => "wrong2"
+  } }
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -50,15 +54,25 @@ RSpec.describe UsersController, type: :controller do
         expect(assigns(:user)).to be_persisted
       end
 
-      it "redirects to the created user" do
+      it "redirects to table topics list" do
         post :create, {:user => valid_attributes}, valid_session
-        expect(response).to redirect_to(User.last)
+        expect(response).to redirect_to(table_topics_path)
+      end
+
+      it "sets the flash success message" do
+        post :create, {:user=> valid_attributes}, valid_session
+        expect(flash[:success]).to eq("Thanks for signing up!")
+      end
+
+      it "sets the session user_id to the created user" do
+        post :create, { :user => valid_attributes}, valid_session
+        expect(session[:user_id]).to eq(User.find_by(email: valid_attributes["email"]).id)
       end
     end
 
     context "with invalid params" do
       it "assigns a newly created but unsaved user as @user" do
-        post :create, {:user => invalid_attributes}, valid_session
+        post :create, {:user => invalid_attributes }, valid_session
         expect(assigns(:user)).to be_a_new(User)
       end
 
@@ -88,10 +102,10 @@ RSpec.describe UsersController, type: :controller do
         expect(assigns(:user)).to eq(user)
       end
 
-      it "redirects to the user" do
+      it "redirects to table_topics" do
         user = User.create! valid_attributes
         put :update, {:id => user.to_param, :user => valid_attributes}, valid_session
-        expect(response).to redirect_to(user)
+        expect(response).to redirect_to(table_topics_path)
       end
     end
 
