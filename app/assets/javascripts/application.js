@@ -16,18 +16,7 @@
 //= require_tree .
 //= require bootstrap-sprockets
 
-function showQuestion(questionHash) {
-  $("#random_question").html(questionHash == null ? "No more questions" : questionHash.random_question);
-}
 
-function updateUsedQuestion(questionHash) {
- var htmlList = '';
- $(questionHash.used_questions).each(function(index, question) {
-     htmlList += "<li>" + question.value + "</li>\n";
- });
- console.log(htmlList);
- $("#used_questions").html(htmlList);
-}
 
 $(document).ready(function() {
 
@@ -35,11 +24,13 @@ $(document).ready(function() {
     event.preventDefault();
     $.ajax({
       url: $("#random").attr("href"), 
+      dataType: "json",
       success: function(data) {
          showQuestion(data); 
          updateUsedQuestion(data);
-	   }
+      }
     }); 
+    return false;
   });
 
   $(".footer").on("click", "#reset_questions", function(event) {
@@ -54,3 +45,15 @@ $(document).ready(function() {
   });
 
 });
+
+function showQuestion(questionHash) {
+  $("#random_question").html(questionHash == null ? "No more questions" : questionHash.random_question);
+}
+
+function updateUsedQuestion(questionHash) {
+ $("#used_questions").empty();
+ $(questionHash.used_questions).each(function(index, question) {
+    var li = $('<li></li>').text(question.value);
+    $("#used_questions").append(li);
+ });
+}
