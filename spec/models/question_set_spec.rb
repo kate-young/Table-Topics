@@ -6,15 +6,18 @@ RSpec.describe QuestionSet, type: :model do
       FactoryGirl.create(:question_set).should be_valid
    end
 
-   it { should validate_presence_of(:name) }
+   context "validations" do
+     it { should validate_presence_of(:name) }
+     it { should validate_presence_of(:description) }
+     it "validates uniqueness of name" do
+        FactoryGirl.create(:question_set).should be_valid
+        should validate_uniqueness_of(:name) 
+     end
+   end
 
-   it { should validate_presence_of(:description) }
-
-   it { should have_many(:questions) }
-
-   it "validates uniqueness of name" do
-      FactoryGirl.create(:question_set).should be_valid
-      should validate_uniqueness_of(:name) 
+   context "relationships" do
+     it { should have_many(:questions) }
+     it { should belong_to(:user) }
    end
 
    it "reset method sets used to false for all question sets" do
@@ -24,7 +27,7 @@ RSpec.describe QuestionSet, type: :model do
       end
       question_set.reset
       question_set.questions.each do |question|
-	 expect(question.used).to eq(false)
-      end
-   end
+	  expect(question.used).to eq(false)
+    end
+  end
 end

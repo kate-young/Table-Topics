@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
     uniqueness: true,
     format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9\.-]+\.[A-Za-z]+\Z/  }
   before_save :downcase_email
+  has_many :question_sets
 
   def downcase_email
     self.email = email.downcase

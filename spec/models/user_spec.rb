@@ -31,8 +31,12 @@ RSpec.describe User, type: :model do
     end
   end
 
+  context "relationships" do
+    it { should have_many :question_sets }
+  end
+
   describe "#downcase_email" do
-    it "makes the email attribute lower cae" do
+    it "makes the email attribute lower case" do
       user = User.new(valid_attributes.merge(email: "KATE@YOUNG.COM"))
       expect{ user.downcase_email }.to change{ user.email }.from("KATE@YOUNG.COM").to("kate@young.com")
     end

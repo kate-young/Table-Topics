@@ -11,7 +11,6 @@ class UserSessionsController < ApplicationController
       redirect_to table_topics_path 
     else
       logger.info params.inspect
-      logger.info(user.authenticate(params[:password]).to_s)
       flash[:error] = "There was a problem logging in. Please check your email and password."
       render action: 'new'
     end

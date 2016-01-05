@@ -6,6 +6,8 @@ class QuestionSet < ActiveRecord::Base
    scope :used, -> { where(used: true) }
    scope :unused, -> { where(used: false) }
 
+   belongs_to :user
+
    def reset
      questions.each { |question| question.reset }
    end
