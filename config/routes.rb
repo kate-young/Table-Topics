@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   resources :user_sessions, only: [:new, :create]
   resources :users
+  resources :password_resets, only: [:new, :create]
+  get "/login", to: "user_sessions#new"
   get "/table_topics", to: "question_sets#table_topics"
   get "/table_topics/:id", to: "question_sets#chose", as: "chose"
   get "/table_topics/:id/random_question", to: "question_sets#random_question", as: "random"
