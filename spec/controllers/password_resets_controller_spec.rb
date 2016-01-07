@@ -65,4 +65,54 @@ RSpec.describe PasswordResetsController, type: :controller do
       expect(response).to render_template(file: "#{Rails.root}/public/404.html")
     end
   end
+
+  describe "PATCH update" do
+    context "with no token found" do
+      it "renders the edit page" do
+        patch :update, id: "notfound", user: { password: "newpassword1", password_confirmation: "newpassword1" }
+        expect(response).to render_template(:edit)
+      end
+
+      it "sets the flash message" do
+        patch :update, id: "notfound", user: { password: "newpassword1", password_confirmation: "newpassword1" }
+        expect(flash[:notice]).to match(/not found/)
+      end
+    end
+
+    context "with a valid token" do
+      let(:user) { FactoryGirl.create(:user) }
+      before { user.generate_password_reset_token! }
+
+      it "updates the user's password" do
+        expect {
+          patch :update, id: user.password_reset_token, user: { password: "newpassword1", password_confirmation: "newpassword1" }
+          user.reload
+        }.to change(user, :password_digest)
+      end
+
+      it "clears the password_reset_token" do
+        patch :update, id: user.password_reset_token, user: {password: "newpassword1", password_confirmation: "newpassword1" }
+        user.reload
+        expect(user.password_reset_token).to be_blank
+      end
+
+      it "sets the session[:user_id] to the user's id" do
+
+        patch :update, id: user.password_reset_token, user: {password: "newpassword1", password_confirmation: "newpassword1" }
+        expect(session[:user_id]).to eq(user.id)
+      end
+
+      it "sets the falsh[:success] message" do
+
+        patch :update, id: user.password_reset_token, user: {password: "newpassword1", password_confirmation: "newpassword1" }
+        expect(flash[:success]).to match(/Password updated/)
+      end
+      
+      it "redirects to table topics" do
+
+        patch :update, id: user.password_reset_token, user: {password: "newpassword1", password_confirmation: "newpassword1" }
+        expect(response).to redirect_to(table_topics_path)
+      end
+    end
+  end
 end
