@@ -11,7 +11,7 @@ RSpec.describe QuestionSet, type: :model do
      it { should validate_presence_of(:description) }
      it "validates uniqueness of name" do
         FactoryGirl.create(:question_set).should be_valid
-        should validate_uniqueness_of(:name) 
+        should validate_uniqueness_of(:name).scoped_to(:user_id) 
      end
    end
 

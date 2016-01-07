@@ -1,6 +1,6 @@
 class QuestionSet < ActiveRecord::Base
    has_many :questions, dependent: :destroy
-   validates :name, presence: true, uniqueness: true
+   validates :name, presence: true, uniqueness: {scope: :user_id} 
    validates :description, presence: true
 
    scope :used, -> { where(used: true) }

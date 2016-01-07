@@ -14,7 +14,7 @@ class QuestionSetsController < ApplicationController
 
   # GET /question_sets/new
   def new
-    @question_set = QuestionSet.new
+    @question_set = current_user.question_sets.new 
   end
 
   # GET /question_sets/1/edit
@@ -48,7 +48,7 @@ class QuestionSetsController < ApplicationController
   # POST /question_sets
   # POST /question_sets.json
   def create
-    @question_set = QuestionSet.new(question_set_params)
+    @question_set = current_user.question_sets.new(question_set_params)
 
     respond_to do |format|
       if @question_set.save
@@ -88,11 +88,11 @@ class QuestionSetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question_set
-      @question_set = QuestionSet.find(params[:id])
+      @question_set = current_user.question_sets.find(params[:id])
     end
 
     def get_all_question_sets
-      @question_sets = QuestionSet.all
+      @question_sets = current_user.question_sets.all 
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
