@@ -1,22 +1,25 @@
 <h2 class="page-title"><%= @question_set.name %></h2>
 
+<div class="block">
 <div id="chose_links">
   <%= link_to "Select Random Question", random_path, id: "random", class: "btn btn-primary btn-block" %> 
 </div>
-
-<h1 class="headline" id="random_question"></h1>
-<h4>Questions already answered:</h4>
-<ul id="used_questions" class="list-unstyled">
-<% if @used.count > 0 %>
-    <% @used.each do |question| %>
-      <li><%= question.value %></li>
-    <% end %>
-<% end %>
-</ul>
-<footer class="footer">
-<ul class="link-list pull-right">
-    <li><%= link_to "Reset", reset_questions_path, id: "reset_questions", class: "btn btn-link" %></li>
-    <li><%= link_to "Edit Questions", question_set_path(@question_set.id), class: "btn btn-link" %></li>
-    <li><%= link_to "Back", table_topics_path, class: "btn btn-link" %></li>
-</ul>
-</footer>
+    <h1 class="block headline" id="random_question"></h1>
+    <div class="block">
+        <h4>Questions already answered:</h4>
+        <ul id="used_questions" class="list-unstyled">
+        <% if @used.count > 0 %>
+            <% @used.each do |question| %>
+              <li><%= question.value %></li>
+            <% end %>
+        <% end %>
+        </ul>
+    </div>
+    <footer class="footer">
+    <ul class="link-list pull-right">
+        <li><%= link_to "Reset", reset_questions_path, id: "reset_questions", class: "btn btn-link" %></li>
+        <li><%= link_to "Edit Questions", question_set_path(@question_set.id), class: "btn btn-link" %></li>
+        <li><%= link_to "Back", table_topics_path, class: "btn btn-link" %></li>
+    </ul>
+    </footer>
+</div>

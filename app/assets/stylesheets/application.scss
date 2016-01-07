@@ -52,9 +52,9 @@ li {
 .headline {
   padding: 20px;
   color: $medium-blue;
-  border: 1px solid $light-blue;
-  border-radius: 5px;
-  margin: 10px 0px;
+}
+footer {
+  padding: 20px;
 }
 /*  HEADER  */
 .navbar-default {
@@ -73,4 +73,17 @@ li {
   .navbar-nav {
       color: $medium-blue;
   }
+  .navbar-nav > li > a {
+      color: $white;
+      &:hover {
+          color: $light-gray;
+      }
+  }
+}
+.block {
+  border-radius: 5px;
+  border: 1px solid $light-blue;
+  box-shadow: 2px 2px 2px $light-gray;
+  margin: 10px 0px;
+  padding: 20px 20px;
 }
