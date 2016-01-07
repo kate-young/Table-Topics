@@ -20,8 +20,16 @@ FactoryGirl.define do
    end
 
    factory :question do 
-      value
-      used false
-      association :question_set, factory: :question_set, name: "Topic" 
+     value
+     used false
+     association :question_set, factory: :question_set, name: "Topic" 
+   end
+
+   factory :user do
+     first_name "Test"
+     last_name "User"
+     email "test@user.com"
+     password "password"
+     password_confirmation "password"
    end
 end
