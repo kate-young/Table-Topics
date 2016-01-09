@@ -19,9 +19,9 @@ RSpec.describe QuestionSetsController, type: :controller do
   
   describe "GET index" do
     it "assigns the user's question_sets as @question_sets" do
-      user.question_sets.create(valid_attributes)  
-      get :new, {}, valid_session
-      expect(assigns(:question_sets))
+      question_set = user.question_sets.create(valid_attributes)  
+      get :index, {},  valid_session
+      expect(assigns(:question_sets)).to eq([question_set])
     end
   end
 
