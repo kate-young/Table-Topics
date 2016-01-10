@@ -36,6 +36,14 @@ RSpec.describe QuestionSetsController, type: :controller do
    end
   end
 
+  describe "GET #show" do
+    let!(:question_set) { user.question_sets.create! valid_attributes }
+    before {  get :show, {:id => question_set.to_param}, valid_session }
+    it "assigns the requested question_set as @question_set" do
+      expect(assigns(:question_set)).to eq(question_set)
+    end
+  end
+
   describe "GET #edit" do
     let!(:question_set) { user.question_sets.create! valid_attributes }
     it "assigns the requested question_set as @question_set" do
@@ -86,7 +94,8 @@ RSpec.describe QuestionSetsController, type: :controller do
          question_set = user.question_sets.create! valid_attributes
          put :update, {:id => question_set.to_param, :question_set => new_attributes}, valid_session
          question_set.reload
-         skip("Add assertions for updated state")
+         expect(question_set.name).to eq(new_attributes[:name])
+         expect(question_set.description).to eq(new_attributes[:description])
        end
        it "assigns the requested question_set as @question_set" do
          question_set = user.question_sets.create! valid_attributes
