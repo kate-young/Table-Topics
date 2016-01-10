@@ -1,6 +1,6 @@
 class QuestionSetsController < ApplicationController
   before_action :require_login
-  before_action :set_question_set, only: [:show, :edit, :update, :destroy, :chose, :random_question, :reset_questions, :used_questions, :chose_links]
+  before_action :set_question_set, only: [:show, :edit, :update, :destroy]
   before_action :get_all_question_sets, only: [:index, :table_topics]
 
   # GET /question_sets
@@ -20,30 +20,6 @@ class QuestionSetsController < ApplicationController
 
   # GET /question_sets/1/edit
   def edit
-  end
-
-  def table_topics 
-  end
-
-  def chose
-    @used = @question_set.questions.used
-    @unused = @question_set.questions.unused
-  end
-
-  def random_question
-    random = @question_set.questions.unused.sample
-    if random 
-      random.use
-    end
-    render json: {
-      random_question: random ? random.value : "No more questions",
-      used_questions: @question_set.questions.used 
-    }
-  end
-
-  def reset_questions
-    @question_set.reset
-    head :ok, content_type: "text/html"
   end
 
   # POST /question_sets

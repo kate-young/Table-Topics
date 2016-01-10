@@ -1,0 +1,2 @@
+module TableTopicsHelper
+end
