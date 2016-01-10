@@ -1,15 +1,16 @@
-<h1>Change Your Password</h1>
+<h2>Change Your Password</h2>
 
 <%= form_for @user, url: password_reset_path(@user.password_reset_token), html: {method: :patch} do |form| %>
+    
+  <div class="form-group">
   <%= form.label :password %>
-  <%= form.password_field :password %>
+  <%= form.password_field :password, class: "form-control" %>
+  </div>
 
-  <br/>
-
+  <div class="form-group">
   <%= form.label :password_confirmation, "Password (again)" %>
-  <%= form.password_field :password_confirmation %>
+  <%= form.password_field :password_confirmation, class: "form-control" %>
+  </div>
 
-  <br/>
-
-  <%= submit_tag "Change Password" %>
+  <%= submit_tag "Change Password", class: "btn btn-default" %>
 <% end %>

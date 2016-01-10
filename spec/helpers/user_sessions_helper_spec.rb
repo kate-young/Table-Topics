@@ -30,4 +30,5 @@ RSpec.describe UserSessionsHelper, type: :helper do
       expect(helper.auth_link).to eq(logout_path)
     end
   end
+
 end

@@ -24,10 +24,19 @@ RSpec.describe QuestionSetsController, type: :controller do
   end
 
   describe "GET #edit" do
-    let!(:question) { user.question_sets.questions.create! valid_attributes }
+    let!(:question) { user.question_sets(0).questions.create! valid_attributes }
     it "assigns the requested question as @question" do
       get :edit, {:id => question.to_param}, valid_session
       expect(assigns(:question)).to eq(question)
+    end
+  end
+
+  describe "DELETE #destroy" do
+    let!(:question) { user.question_sets(0).questions.create! valid_attributes }
+    it "deletes the question" do
+      expect {
+         delete :destroy, {:id => question.to_param}, valid_session
+      }.to change(user.question_sets.questions, :count).by(-1)
     end
   end
 end
