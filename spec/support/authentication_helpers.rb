@@ -13,4 +13,10 @@ module AuthenticationHelpers
       click_button "Log In"
     end
   end
+
+  module Helper
+    def sign_in
+      helper.stub(:signed_in).and_return(true)
+    end
+  end
 end

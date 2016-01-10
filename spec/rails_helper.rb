@@ -34,6 +34,7 @@ RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
   config.include AuthenticationHelpers::Controller, type: :controller
+  config.include AuthenticationHelpers::Helper, type: :helper
   config.include AuthenticationHelpers::Feature, type: :feature
   config.include FactoryGirl::Syntax::Methods
   # If you're not using ActiveRecord, or you'd prefer not to run each of your

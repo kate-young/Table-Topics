@@ -40,6 +40,19 @@ RSpec.describe UserSessionsController, type: :controller do
         expect(flash[:success]).to eq("You are now logged in!")
       end
     end
+
+    describe "DELETE destroy" do
+      before { delete :destroy }
+      it "removes the user session" do
+        expect(session[:user_id]).to be_nil
+      end
+      it "redirects to login" do
+        expect(response).to redirect_to(login_path)
+      end
+      it "sets the flash success message" do
+        expect(flash[:success]).to eq("You are now logged out")
+      end
+    end
     
     shared_examples_for "denied login" do
       it "renders the new template" do

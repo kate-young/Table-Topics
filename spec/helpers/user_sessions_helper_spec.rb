@@ -11,5 +11,23 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe UserSessionsHelper, type: :helper do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  describe "#auth_text" do
+    it "returns 'Log In' when the user is logged out" do
+      expect(helper.auth_text).to eq("Log In")
+    end
+    it "returns 'Log Out' when the user is logged in" do
+      sign_in
+      expect(helper.auth_text).to eq("Log Out")
+    end
+  end
+  describe "#auth_link" do
+    it "returns login_path when the user is logged out" do
+      expect(helper.auth_link).to eq(login_path)
+    end
+    it "returns logout_path when the user is logged in" do
+      sign_in
+      expect(helper.auth_link).to eq(logout_path)
+    end
+  end
 end
