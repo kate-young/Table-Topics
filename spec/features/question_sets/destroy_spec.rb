@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "Destroying a question set" do
   let!(:question_set) { FactoryGirl.create(:question_set) }
+  before { sign_in question_set.user, password: "password" } 
 
   it "redirects to the question set list on success" do
     expect(QuestionSet.count).to eq(1)

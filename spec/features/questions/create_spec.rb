@@ -17,6 +17,7 @@ describe "Creating a new question" do
   end
 
   let!(:question_set) { FactoryGirl.create(:question_set) }
+  before { sign_in question_set.user, password: "password" }
 
   it "redirects to show question set page on success with new question" do
     expect(question_set.questions.count).to eq(0)

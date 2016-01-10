@@ -15,7 +15,7 @@ RSpec.describe QuestionSetsController, type: :controller do
   let(:valid_session) {{}}
   let(:user) { FactoryGirl.create(:user) }
 
-  before { controller.stub(:current_user).and_return(user) }
+  before { sign_in(user) }
   
   describe "GET index" do
     it "assigns the user's question_sets as @question_sets" do

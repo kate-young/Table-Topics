@@ -2,6 +2,7 @@ require 'rails_helper'
 
 describe "Destroying a question" do
   let!(:question) { FactoryGirl.create(:question) }
+  before { sign_in question.question_set.user, password: "password" }
 
   it "redirects to the question set on success" do
     question_set = QuestionSet.find(question.question_set_id)

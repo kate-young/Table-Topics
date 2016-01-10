@@ -14,7 +14,7 @@ RSpec.describe QuestionSetsController, type: :controller do
   let(:user) { FactoryGirl.create(:user) }
   let(:question_set) { user.question_sets.create! FactoryGirl.attributes_for(:question_set) }
 
-  before { controller.stub(:current_user).and_return(user) }
+  before { sign_in(user) }
 
   describe "GET new" do
     it "assigns a new question as @question" do

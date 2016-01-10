@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_filter
   before_action :set_user, only: [:show, :edit, :update, :destroy]
   # GET /users/new
   def new

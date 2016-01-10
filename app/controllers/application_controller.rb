@@ -1,17 +1,18 @@
 class ApplicationController < ActionController::Base
-  before_filter :require_login
-  skip_before_filter :require_login
   protect_from_forgery with: :exception
-  add_flash_types :success
+  add_flash_types :success, :my, :types
 
   def current_user
-    User.find(session[:user_id])
-  end
-
-  def require_login
-    unless session[:user_id] 
-      redirect_to login_path
+    if session[:user_id]
+      @current_user ||= User.find(session[:user_id])
     end
   end
 
+  def require_login
+    if current_user
+      true
+    else
+      redirect_to login_path, notice: "You must be logged in to access that page"
+    end
+  end
 end

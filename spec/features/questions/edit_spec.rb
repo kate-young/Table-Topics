@@ -16,6 +16,7 @@ describe "Editing a question" do
   end
 
   let!(:question) { FactoryGirl.create(:question) }
+  before { sign_in question.question_set.user, password: "password" }
   
   it "redirects to show question set on success with updated question" do
      editted_question = edit_question question: question

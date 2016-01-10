@@ -9,6 +9,9 @@ describe "Choosing a question set", :js => true do
 
   let!(:question_set) { FactoryGirl.create(:question_set_with_questions) }
 
+  before do
+    sign_in question_set.user, password: "password"
+  end
   it "marks all questions as unused when selecting reset" do
     use_all_questions question_set: question_set
 

@@ -1,4 +1,5 @@
 class QuestionSetsController < ApplicationController
+  before_action :require_login
   before_action :set_question_set, only: [:show, :edit, :update, :destroy, :chose, :random_question, :reset_questions, :used_questions, :chose_links]
   before_action :get_all_question_sets, only: [:index, :table_topics]
 

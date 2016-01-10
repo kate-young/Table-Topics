@@ -17,6 +17,7 @@ describe "Editting a question set" do
    end
 
    let!(:question_set) { FactoryGirl.create(:question_set) }
+   before { sign_in question_set.user, password: "password" }
 
    it "redirects to question set list on success" do
      editted_question_set = edit_question_set question_set: question_set

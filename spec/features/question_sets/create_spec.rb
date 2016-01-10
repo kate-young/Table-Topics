@@ -1,6 +1,9 @@
 require 'rails_helper'
 
 describe "Creating a new question set" do
+   let!(:user) { FactoryGirl.create(:user) }
+   before { sign_in user, password: "password" }
+
    def create_question_set(options={})
       options[:name] ||= "Table Topics Questions"
       options[:description] ||= "List of questions for table topics"
@@ -39,7 +42,7 @@ describe "Creating a new question set" do
    end
 
    it "displays an error when a question set with the same name has already been created"  do
-      QuestionSet.create(name: "Table Topics Questions", description: "List")
+      user.question_sets.create(name: "Table Topics Questions", description: "List")
       expect(QuestionSet.count).to eq(1)
       create_question_set
 
