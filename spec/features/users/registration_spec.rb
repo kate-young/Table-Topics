@@ -1,10 +1,10 @@
-require "spec_helper"
+require "rails_helper"
 
 describe "Signing up" do
   it "allows a user to sign up for the site and creates the object in the database" do
     expect(User.count).to eq(0)
 
-    visit "/table_topics"
+    visit "/signup"
     expect(page).to have_content("Sign Up")
     click_link "Sign Up"
 
