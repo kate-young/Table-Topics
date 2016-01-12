@@ -1,4 +1,5 @@
 class TableTopicsController < ApplicationController
+  before_action :require_login
   before_action :set_question_set, only: [:show, :random_question, :reset_questions]
   def index 
     @question_sets = current_user.question_sets.all 

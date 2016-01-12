@@ -8,7 +8,9 @@
     <%= link_to 'Destroy', question_set, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-link btn-xs pull-right" %>
     </li>
 <% end %>
+     <li id="new">
+    <%= link_to 'Add New', new_question_set_path, class: "btn btn-primary btn-block" %>
+    </li>
 </ul>
 <br>
 
-<%= link_to 'Add New', new_question_set_path, class: "btn btn-default" %>
