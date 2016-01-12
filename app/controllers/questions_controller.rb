@@ -3,8 +3,8 @@ class QuestionsController < ApplicationController
   before_action :set_question, only: [:show, :edit, :update, :destroy]
 
   def new
-    question_set = QuestionSet.find(params[:question_set_id])
-    @question = question_set.questions.build
+    question_set = current_user.question_sets.find(params[:question_set_id])
+    @question = question_set.questions.new
   end
 
   def edit
@@ -14,8 +14,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    question_set = QuestionSet.find(params[:question_set_id])
-
+    question_set = current_user.question_sets.find(params[:question_set_id])
     @question = question_set.questions.create(question_params)
     respond_to do |format|
       if @question.save
@@ -49,7 +48,7 @@ class QuestionsController < ApplicationController
 
   private
     def set_question
-      question_set = QuestionSet.find(params[:question_set_id])
+      question_set = current_user.question_sets.find(params[:question_set_id])
       @question = question_set.questions.find(params[:id])
     end
 
