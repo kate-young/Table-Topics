@@ -8,9 +8,11 @@ class Question < ActiveRecord::Base
 
   def use
     update(used: true)
+    touch(:used_at)
   end
   def reset
     update(used: false)
+    update(used_at: nil)
   end
   def default_values
     self.used ||= false

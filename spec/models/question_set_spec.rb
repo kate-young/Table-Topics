@@ -30,4 +30,11 @@ RSpec.describe QuestionSet, type: :model do
 	  expect(question.used).to eq(false)
     end
   end
+
+  it "returns the last used question" do
+     question_set = FactoryGirl.create(:question_set_with_questions)
+     used_question = question_set.questions.first
+     used_question.use
+     expect(question_set.last_used).to eq(used_question)
+  end
 end
