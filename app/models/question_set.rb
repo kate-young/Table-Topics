@@ -11,4 +11,8 @@ class QuestionSet < ActiveRecord::Base
    def reset
      questions.each { |question| question.reset }
    end
+
+   def last_used
+     questions.order("used_at").last
+   end
 end

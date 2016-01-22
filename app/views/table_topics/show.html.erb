@@ -3,7 +3,11 @@
 <div id="chose_links">
   <%= link_to "Select Random Question", random_path, id: "random", class: "btn btn-primary btn-block" %> 
 </div>
-<h1 class="headline" id="random_question"></h1>
+<h1 class="headline" id="random_question">
+    <% if @last_used  %>
+      <%= @last_used.value %>
+    <% end %>
+</h1>
 <div class="panel">
   <h4>Questions already answered:</h4>
   <ul id="used_questions" class="list-unstyled">

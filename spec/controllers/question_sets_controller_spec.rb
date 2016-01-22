@@ -42,6 +42,11 @@ RSpec.describe QuestionSetsController, type: :controller do
       it "assigns the requested question_set as @question_set" do
         expect(assigns(:question_set)).to eq(question_set)
       end
+      it "assigns the most recently used question as @last_used" do
+        used_question = question_set.questions.first
+        used_question.use
+        expec(assigns(:last_used)).to eq(used_question)
+      end
     end
 
     describe "GET #edit" do

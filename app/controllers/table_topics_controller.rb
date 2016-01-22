@@ -8,6 +8,7 @@ class TableTopicsController < ApplicationController
   def show 
     @used = @question_set.questions.used
     @unused = @question_set.questions.unused
+    @last_used = @question_set.last_used
   end
 
   def random_question
