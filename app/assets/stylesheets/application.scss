@@ -32,7 +32,16 @@ ul {
 }
 li {
   color: $dark-gray;
-  margin-left: 20px;
+}
+.list-group-item {
+  &:first-child, &:last-child {
+    border-radius: 0px;
+  }
+  border-left: none;
+  border-right: none;
+}
+.btn-block {
+  border-radius: 0px;
 }
 .btn-primary {
   background-color: $medium-blue;
@@ -53,8 +62,10 @@ li {
   margin: 10px 0px;
 }
 .headline {
-  padding: 20px;
+  padding: 20px 0px;
   color: $medium-blue;
+  font-size: 54px;
+  text-align: center;
 }
 footer {
   padding: 20px;
@@ -82,10 +93,4 @@ footer {
           color: $light-gray;
       }
   }
-}
-.block {
-  border-radius: 5px;
-  border: 1px solid $light-blue;
-  margin: 10px 0px;
-  padding: 20px 20px;
 }

@@ -1,5 +1,8 @@
 <h2 class="page-title"><%= @question_set[:name] %></h2>
-<p><strong>Description: </strong><%= @question_set[:description] %></p>
+<div class="panel">
+  <p><strong>Description: </strong><%= @question_set[:description] %></p>
+</div>
+<h3>Questions:</h3>
 <ul class="list-group">
 <% @question_set.questions.each do |question| %>
     <li id="<%= dom_id(question) %>", class="list-group-item">
