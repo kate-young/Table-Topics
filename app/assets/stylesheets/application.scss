@@ -17,6 +17,7 @@
 @import "bootstrap";
 
 $light-gray: #6D828A;
+$light-light-gray: #cccccc;
 $dark-gray: #303A3D;
 $medium-gray: #6D828A;
 $light-blue: #62AEC8;
@@ -63,12 +64,22 @@ li {
 }
 .headline {
   padding: 20px 0px;
+  background-color: $white;
   color: $medium-blue;
   font-size: 54px;
   text-align: center;
 }
-footer {
-  padding: 20px;
+/* FOOTER */
+.footer {
+  position: absolute;
+  background-color: $white;
+  left: 0px;
+  right: 0px;
+  bottom: 10px;
+  padding-top: 20px;
+  color: $light-gray;
+  border-top: 1px solid $light-light-gray;
+  overflow: hidden;
 }
 /*  HEADER  */
 .navbar-default {
