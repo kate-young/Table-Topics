@@ -20,7 +20,7 @@
 
 $(document).ready(function() {
 
-  $("#chose_links").on("click", "#random", function(event) {
+  $("#random").on("click", function(event) {
     event.preventDefault();
     $.ajax({
       url: $("#random").attr("href"), 
@@ -47,7 +47,8 @@ $(document).ready(function() {
 });
 
 function showQuestion(questionHash) {
-  $("#random_question").html(questionHash == null ? "No more questions" : questionHash.random_question);
+  var random = questionHash == null ? "No more questions" : questionHash.random_question;
+  $("#random_question").text(random).hide(0).fadeIn("slow");
 }
 
 function updateUsedQuestion(questionHash) {
