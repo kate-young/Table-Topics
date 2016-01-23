@@ -33,7 +33,7 @@ $(document).ready(function() {
     return false;
   });
 
-  $(".footer").on("click", "#reset_questions", function(event) {
+  $("#reset_questions").on("click", function(event) {
     event.preventDefault();
     $.ajax({
        url: $("#reset_questions").attr("href"),
