@@ -13,6 +13,6 @@ class QuestionSet < ActiveRecord::Base
    end
 
    def last_used
-     questions.order("used_at").last
+     questions.used.order("used_at").last
    end
 end

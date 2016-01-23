@@ -4,7 +4,7 @@ RSpec.describe TableTopicsController, type: :controller do
 
   let(:valid_session) {{}}
   let(:user) { FactoryGirl.create(:user) }
-  let(:question_set) { user.question_sets.create({name: "Name", description: "Description"}) }
+  let(:question_set) { user.question_sets.create(FactoryGirl.attributes_for(:question_set)) }
 
   before { sign_in(user) }
 
@@ -16,9 +16,19 @@ RSpec.describe TableTopicsController, type: :controller do
   end
 
   describe "GET show" do
+    let(:question) { question_set.questions.create({ value: "This is a question"}) }
     it "sets @question_set as the requested question_set" do
       get :show, {:id => question_set.to_param }, valid_session
       expect(assigns(:question_set)).to eq(question_set)
+    end
+    it "sets @last_used as the last used question in the question_set" do
+      question.use
+      get :show, {:id => question_set.to_param }, valid_session
+      expect(assigns(:last_used)).to eq(question)
+    end
+    it "sets @last_used to nil when there are no used questions in the question_set" do
+      get :show, {:id => question_set.to_param }, valid_session
+      expect(assigns(:last_used)).to be(nil)
     end
   end
 
