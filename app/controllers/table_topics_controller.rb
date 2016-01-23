@@ -6,7 +6,7 @@ class TableTopicsController < ApplicationController
   end
 
   def show 
-    @used = @question_set.questions.used
+    @used = @question_set.questions.used.order(:used_at)
     @unused = @question_set.questions.unused
     @last_used = @question_set.last_used
   end
@@ -18,7 +18,7 @@ class TableTopicsController < ApplicationController
     end
     render json: {
       random_question: random ? random.value : "No more questions",
-      used_questions: @question_set.questions.used 
+      used_questions: @question_set.questions.used.order(:used_at)
     }
   end
 
